@@ -1,0 +1,8 @@
+Objetos: 
+
+- Nodo
+	El objeto nodo tendrá atributos tales como name, description, subnet, id, netmask, dpid, port.
+- Conexiones
+	El objeto conexiones tendrá atributos tales como dpid, port y description.
+	
+	

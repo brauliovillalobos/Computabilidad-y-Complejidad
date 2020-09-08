@@ -49,7 +49,7 @@ t_DATOSINICTC = r'</Datos_de_INGC\d+_CAT_INDICADORECONOMIC>'
 t_DATASET = r'DataSet\sxmlns="http://ws.sdde.bccr.fi.cr">'
 t_DATASETC = r'</DataSet>'
 t_LETTERS = r'[a-zA-Z]+'
-t_NUMBER = r'\d+'
+t_NUMBER = r'\d+' #prueba de Git
 t_TRASH = r'<xs:([a-zA-Z]+|\s+|[0-9]+|(=|\"|_|:|/|.|-)+)>{1}'
 
 #<xs:schema id="Datos_de_INGC011_CAT_INDICADORECONOMIC" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">

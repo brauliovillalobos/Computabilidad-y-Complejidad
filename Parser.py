@@ -52,15 +52,6 @@ t_TRASH = r'<xs:([a-zA-Z]+|\s+|[0-9]+|(=|\"|_|:|/|.|-)+)>{1}'
 
 #<xs:schema id="Datos_de_INGC011_CAT_INDICADORECONOMIC" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
 
-def t_NUMBER(t):
-    r'\d+'
-    try:
-        t.value = int(t.value)
-    except ValueError:
-        print("Integer value too large %d", t.value)
-        t.value = 0
-    return t
-
 # Ignored characters
 t_ignore = ' \t'
 
@@ -98,11 +89,17 @@ def p_statement_CCDF(t):
     print(t[3])
 
 def p_statement_CING(t):
-    'CING : INDICADOR'
+    'CING : DATE'
     print(t[1])
 
 def p_statement_INDICADOR(t):
     'INDICADOR : INDICADORT NUMBER INDICADORTC'
+    print(t[1])
+    print(t[2])
+    print(t[3])
+
+def p_statement_DATE(t):
+    'DATE : FECHAT FECHA FECHATC'
     print(t[1])
     print(t[2])
     print(t[3])

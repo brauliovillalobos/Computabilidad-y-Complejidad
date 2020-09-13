@@ -81,12 +81,6 @@ lexer = lex.lex()
 #dictionary of names
 names = { }
 
-def p_statement_CODIGO(t):
-    'CODIGO : INDICADORT NUMBER INDICADORTC'
-    print(t[1])
-    print(t[2])
-    print(t[3])
-
 def p_statement_DF(t):
     'statement : DIFFGR CDF DIFFGRC'
     print(t[1])
@@ -100,10 +94,12 @@ def p_statement_CDF(t):
 def p_statement_CCDF(t):
     'CCDF : ING CING INGC'
     print(t[1])
+    print(t[2])
     print(t[3])
 
 def p_statement_CING(t):
     'CING : INDICADOR'
+    print(t[1])
 
 def p_statement_INDICADOR(t):
     'INDICADOR : INDICADORT NUMBER INDICADORTC'

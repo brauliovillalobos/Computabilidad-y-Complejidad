@@ -89,7 +89,7 @@ def p_statement_CCDF(t):
     print(t[3])
 
 def p_statement_CING(t):
-    'CING : DATE'
+    'CING : VALOR'
     print(t[1])
 
 def p_statement_INDICADOR(t):
@@ -100,6 +100,12 @@ def p_statement_INDICADOR(t):
 
 def p_statement_DATE(t):
     'DATE : FECHAT FECHA FECHATC'
+    print(t[1])
+    print(t[2])
+    print(t[3])
+
+def p_statement_VALOR(t):
+    'VALOR : NUMT NUM NUMTC'
     print(t[1])
     print(t[2])
     print(t[3])

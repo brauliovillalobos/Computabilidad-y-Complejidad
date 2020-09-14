@@ -72,25 +72,39 @@ lexer = lex.lex()
 #dictionary of names
 names = { }
 
-def p_statement_DF(t):
+def p_statement_DF(t): #Paso 1
     'statement : DIFFGR CDF DIFFGRC'
     print(t[1])
     print(t[3])
 
-def p_statement_CDF(t):
-    'CDF : DATOSINICT CCDF DATOSINICTC'
+def p_statement_CDF(t): #Paso 2
+    'CDF : DATOSINICT CCDFS DATOSINICTC'
     print(t[1])
     print(t[3])
 
-def p_statement_CCDF(t):
+def p_statement_CCDFS(t):
+    'CCDFS : CCDF CCDFS'
+    print(t[1])
+    print(t[2])
+
+def p_statement_CCDFSBase(t):
+    'CCDFS : CCDF'
+    print(t[1])
+def p_statement_CCDF(t): #REGLA 1 de CCDF
     'CCDF : ING CING INGC'
     print(t[1])
     print(t[2])
     print(t[3])
 
+
+#<diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1"> <Datos_de_INGC011_CAT_INDICADORECONOMIC xmlns=""> <INGC011_CAT_INDICADORECONOMIC diffgr:id="INGC011_CAT_INDICADORECONOMIC1" msdata:rowOrder="0"> <DES_FECHA>2019-05-25T00:00:00-06:00</DES_FECHA> <NUM_VALOR>588.41000000</NUM_VALOR> </INGC011_CAT_INDICADORECONOMIC> <INGC011_CAT_INDICADORECONOMIC diffgr:id="INGC011_CAT_INDICADORECONOMIC2" msdata:rowOrder="1"> <DES_FECHA>2019-05-26T00:00:00-06:00</DES_FECHA> <NUM_VALOR>588.41000000</NUM_VALOR> </INGC011_CAT_INDICADORECONOMIC> <INGC011_CAT_INDICADORECONOMIC diffgr:id="INGC011_CAT_INDICADORECONOMIC3" msdata:rowOrder="2"> <DES_FECHA>2019-05-27T00:00:00-06:00</DES_FECHA> <NUM_VALOR>588.41000000</NUM_VALOR> </INGC011_CAT_INDICADORECONOMIC> </Datos_de_INGC011_CAT_INDICADORECONOMIC> </diffgr:diffgram>
+
+
+
+
 def p_statement_CING(t):
-    'CING : VALOR'
-    print(t[1])
+    'CING : DATE VALOR'
+
 
 def p_statement_INDICADOR(t):
     'INDICADOR : INDICADORT NUMBER INDICADORTC'

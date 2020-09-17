@@ -34,10 +34,10 @@ tokens = (
 t_INDICADORT = r'<COD_INDICADORINTERNO>'
 t_INDICADORTC = r'</COD_INDICADORINTERNO>'
 t_NUMT = r'<NUM_VALOR>'
-t_NUM = r'\d{3}\.\d+'
+#t_NUM = r'\d{3}\.\d+'
 t_NUMTC = r'</NUM_VALOR>'
 t_FECHAT = r'<DES_FECHA>'
-t_FECHA = r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-\d{2}:\d{2}'
+#t_FECHA = r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-\d{2}:\d{2}'
 t_FECHATC = r'</DES_FECHA>'
 t_DIFFGR = r'<diffgr.+-diffgram-v\d">'
 t_DIFFGRC = r'</diffgr:diffgram>'
@@ -51,6 +51,25 @@ t_LETTERS = r'[a-zA-Z]+'
 t_TRASH = r'<xs:([a-zA-Z]+|\s+|[0-9]+|(=|\"|_|:|/|.|-)+)>{1}'
 
 #<xs:schema id="Datos_de_INGC011_CAT_INDICADORECONOMIC" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+
+#Regla de Fecha
+
+def t_FECHA(t):
+    r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-\d{2}:\d{2}'
+    return t
+
+def t_NUM(t):
+    r'\d{3}\.\d+'
+    return t
+
+def t_NUMBER(t):
+    r'\d+'
+    try:
+        t.value = int(t.value)
+    except ValueError:
+        print("Integer value too large %d", t.value)
+        t.value = 0
+    return t
 
 # Ignored characters
 t_ignore = ' \t'
@@ -99,12 +118,8 @@ def p_statement_CCDF(t): #REGLA 1 de CCDF
 
 #<diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1"> <Datos_de_INGC011_CAT_INDICADORECONOMIC xmlns=""> <INGC011_CAT_INDICADORECONOMIC diffgr:id="INGC011_CAT_INDICADORECONOMIC1" msdata:rowOrder="0"> <DES_FECHA>2019-05-25T00:00:00-06:00</DES_FECHA> <NUM_VALOR>588.41000000</NUM_VALOR> </INGC011_CAT_INDICADORECONOMIC> <INGC011_CAT_INDICADORECONOMIC diffgr:id="INGC011_CAT_INDICADORECONOMIC2" msdata:rowOrder="1"> <DES_FECHA>2019-05-26T00:00:00-06:00</DES_FECHA> <NUM_VALOR>588.41000000</NUM_VALOR> </INGC011_CAT_INDICADORECONOMIC> <INGC011_CAT_INDICADORECONOMIC diffgr:id="INGC011_CAT_INDICADORECONOMIC3" msdata:rowOrder="2"> <DES_FECHA>2019-05-27T00:00:00-06:00</DES_FECHA> <NUM_VALOR>588.41000000</NUM_VALOR> </INGC011_CAT_INDICADORECONOMIC> </Datos_de_INGC011_CAT_INDICADORECONOMIC> </diffgr:diffgram>
 
-
-
-
 def p_statement_CING(t):
-    'CING : DATE VALOR'
-
+    'CING : INDICADOR DATE VALOR'
 
 def p_statement_INDICADOR(t):
     'INDICADOR : INDICADORT NUMBER INDICADORTC'

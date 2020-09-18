@@ -144,10 +144,11 @@ def p_error(t):
 
 import ply.yacc as yacc
 parser = yacc.yacc()
+parser.parse(data)
 
-while True:
-    try:
-        s = input('Input ')   # Use raw_input on Python 2
-    except EOFError:
-        break
-    parser.parse(s)
+#while True:
+#    try:
+#        s = input('Input')   # Use raw_input on Python 2
+#    except EOFError:
+#        break
+#    parser.parse(data)

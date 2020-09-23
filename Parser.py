@@ -86,6 +86,11 @@ def t_error(t):
 import ply.lex as lex
 lexer = lex.lex()
 
+#Creation of Objects of ArrayList type
+dates = []
+values = []
+indicador = []
+
 #Parsing rules
 
 #dictionary of names
@@ -126,18 +131,21 @@ def p_statement_INDICADOR(t):
     print(t[1])
     print(t[2])
     print(t[3])
+    indicador.append(t[2])
 
 def p_statement_DATE(t):
     'DATE : FECHAT FECHA FECHATC'
     print(t[1])
     print(t[2])
     print(t[3])
+    dates.append(t[2])
 
 def p_statement_VALOR(t):
     'VALOR : NUMT NUM NUMTC'
     print(t[1])
     print(t[2])
     print(t[3])
+    values.append(t[2])
 
 def p_error(t):
     print("Syntax error at '%s'" % t.value)
@@ -145,6 +153,10 @@ def p_error(t):
 import ply.yacc as yacc
 parser = yacc.yacc()
 parser.parse(data)
+
+print(dates)
+print(values)
+print(indicador)
 
 #while True:
 #    try:

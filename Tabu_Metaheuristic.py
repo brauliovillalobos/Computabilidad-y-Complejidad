@@ -71,7 +71,7 @@ def random_mmr(n, prob2, prob3, prob4, prob5):
 
 
 ## Running an example
-df = random_mmr(20, 0.1, 0.2, 0.3, 0.4)
+df = random_mmr(30, 0.1, 0.2, 0.3, 0.4)
 
 # ## Saving the output in a txt file
 # with open(r'C:\Users\stefq\iCloudDrive\CompComp\GitHub\Comp_Gh\proyecto2\pool.txt', 'a') as f:
@@ -156,20 +156,36 @@ while(contador <= len(x)-1):
 
     x_copy[0] = temporal1
     x_copy[contador] = equipo_intercambiar
-    print(x_copy)
     temporary_list = x_copy
     contador = contador + 1
     while_list.append(temporary_list[:])
 
 print(while_list)
 
+#Evaluate every possible match
+MMR_comparative_list = []
+for i in range(0, (len(while_list))):
+    list_to_use = while_list[i]
+    first = 0
+    second = 1
+    MMR_comparison = 0
+    while(second < len(list_to_use)):
+        first_team = list_to_use[first]
+        second_team = list_to_use[second]
+        first_team_average = statistics.mean(first_team)
+        second_team_average = statistics.mean(second_team)
+        average_diff = round(abs(first_team_average-second_team_average),0)
+        MMR_comparison = MMR_comparison + average_diff
+        #Update values
+        first = first + 2
+        second = second + 2
+    MMR_comparative_list.insert(i, MMR_comparison)
 
-#print(while_list[0])
+print(MMR_comparative_list)
 
+#Find index of the minimum MMR comparison
 
-
-
-
+print(MMR_comparative_list.index(min(MMR_comparative_list)))
 
 #for s in x:
 #    print(*s)
